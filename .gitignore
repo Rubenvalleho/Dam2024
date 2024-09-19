@@ -14,3 +14,11 @@
 .cxx
 local.properties
 /.idea/.gitignore
+/.idea/misc.xml
+/.idea/appInsightsSettings.xml
+/.idea/compiler.xml
+/.idea/deploymentTargetSelector.xml
+/.idea/gradle.xml
+/.idea/kotlinc.xml
+/.idea/migrations.xml
+/.idea/vcs.xml
