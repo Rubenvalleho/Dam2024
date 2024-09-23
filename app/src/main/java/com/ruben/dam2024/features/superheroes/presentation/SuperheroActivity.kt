@@ -1,22 +1,25 @@
-package com.ruben.dam2024.features.movies.presentation
+package com.ruben.dam2024.features.superheroes.presentation
 
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import com.ruben.dam2024.R
 
-class MoviesActivity : AppCompatActivity() {
+class SuperheroActivity : AppCompatActivity() {
 
-    private val movieFactory: MovieFactory = MovieFactory()
+    private val superheroFactory: SuperheroFactory = SuperheroFactory()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        val viewModel = movieFactory.buildViewModel()
-        val movies = viewModel.viewCreated()
-        val movie = viewModel.movieSelected("1")
-        Log.d("@dev", movies.toString())
-        Log.d("@dev", movie.toString())
+        setContentView(R.layout.activity_main2)
+        val viewModel = superheroFactory.buildViewModel()
+        val superheroes = viewModel.viewCreated()
+        val superhero = viewModel.superheroSelected("Thor")
+        Log.d("@dev", superheroes.toString())
+        Log.d("@dev", superhero.toString())
     }
 
     override fun onStart() {
@@ -43,5 +46,4 @@ class MoviesActivity : AppCompatActivity() {
         super.onDestroy()
         Log.d("@dev", "onDestroy")
     }
-
 }
