@@ -1,7 +1,7 @@
 package com.ruben.dam2024.features.superheroes.domain
 
-class GetSuperheroesUseCase(private val SuperheroRepository: SuperheroRepository) {
+class GetSuperheroesUseCase(private val superheroRepository: SuperheroRepository) {
     fun invoke(): List<Superhero> {
-        return SuperheroRepository.getSuperheroes()
+        return superheroRepository.getSuperheroes()
     }
 }

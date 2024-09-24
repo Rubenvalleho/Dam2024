@@ -5,12 +5,13 @@ import com.ruben.dam2024.features.superheroes.domain.Superhero
 import com.ruben.dam2024.features.superheroes.domain.SuperheroRepository
 
 class SuperheroDataRepository (
-    private val superheromockRemoteDataSource: SuperheroMockRemoteDataSource): SuperheroRepository{
+    private val superheroMockRemoteDataSource: SuperheroMockRemoteDataSource): SuperheroRepository{
+
     override fun getSuperheroes(): List<Superhero> {
-        return superheromockRemoteDataSource.getSuperheroes()
+        return superheroMockRemoteDataSource.fetchSuperheroes()
     }
 
     override fun getSuperhero(id: String): Superhero? {
-        return superheromockRemoteDataSource.getSuperhero(id)
+        return superheroMockRemoteDataSource.getSuperhero(id)
     }
 }
