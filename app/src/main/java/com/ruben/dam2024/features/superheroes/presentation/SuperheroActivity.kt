@@ -4,10 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.ruben.dam2024.R
 import com.ruben.dam2024.features.superheroes.domain.Superhero
 
@@ -18,9 +15,9 @@ class SuperheroActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main2)
+        setContentView(R.layout.activity_superhero)
         val superheroes = viewModel.viewCreated()
-        val superhero = viewModel.superheroSelected("3")
+        val superhero = viewModel.superheroSelected("1")
         Log.d("@dev", superheroes.toString())
         Log.d("@dev", superhero.toString())
         bindDate(superheroes)
@@ -79,13 +76,5 @@ class SuperheroActivity : AppCompatActivity() {
             }
         }
 
-        findViewById<TextView>(R.id.superhero_id_4).text = superheroes[3].id
-        findViewById<TextView>(R.id.superhero_name_4).text = superheroes[3].name
-        findViewById<LinearLayout>(R.id.layout_4).setOnClickListener {
-            val superhero4: Superhero? = viewModel.superheroSelected(superheroes[3].id)
-            superhero4?.let {
-                Log.d("@dev", "El superheroe selecionado es: ${it.name}")
-            }
-        }
     }
 }

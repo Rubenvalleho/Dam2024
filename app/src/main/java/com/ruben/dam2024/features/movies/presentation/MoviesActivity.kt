@@ -15,7 +15,7 @@ class MoviesActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_movie)
         val movies = viewModel.viewCreated()
         val movie = viewModel.movieSelected("1")
         Log.d("@dev", movies.toString())

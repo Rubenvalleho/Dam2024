@@ -4,7 +4,7 @@ import com.ruben.dam2024.features.superheroes.domain.Superhero
 
 class SuperheroMockRemoteDataSource {
 
-    val superheroes: List<Superhero> = listOf(
+    private val superheroes: List<Superhero> = listOf(
         Superhero(
         "1",
         "Iron Man",
@@ -16,7 +16,7 @@ class SuperheroMockRemoteDataSource {
             "https://cursokotlin.com/wp-content/uploads/2017/07/spiderman.jpg"
         ),
         Superhero(
-            "2",
+            "3",
             "Batman",
             "https://cursokotlin.com/wp-content/uploads/2017/07/thor.jpg"
         )
