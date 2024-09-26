@@ -75,6 +75,5 @@ class SuperheroActivity : AppCompatActivity() {
                 Log.d("@dev", "El superheroe selecionado es: ${it.name}")
             }
         }
-
     }
 }

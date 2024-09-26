@@ -6,6 +6,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.ruben.dam2024.R
+import com.ruben.dam2024.features.movies.data.local.MovieXmlLocalDataSource
 import com.ruben.dam2024.features.movies.domain.Movie
 
 class MoviesActivity : AppCompatActivity() {
@@ -21,6 +22,7 @@ class MoviesActivity : AppCompatActivity() {
         Log.d("@dev", movies.toString())
         Log.d("@dev", movie.toString())
         bindDate(movies)
+        testXml()
     }
 
     override fun onStart() {
@@ -46,6 +48,17 @@ class MoviesActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         Log.d("@dev", "onDestroy")
+    }
+
+    private fun testXml() {
+        val xmlDataSource = MovieXmlLocalDataSource(this)
+        val movie = viewModel.movieSelected("1")
+        movie?.let {
+            xmlDataSource.saveMovie(it)
+        }
+
+        val movieSaved = xmlDataSource.findMovie()
+        Log.d("@dev", movieSaved.toString())
     }
 
     private fun bindDate(movies: List<Movie>) {
