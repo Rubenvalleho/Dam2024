@@ -11,18 +11,23 @@ import com.ruben.dam2024.features.movies.domain.Movie
 
 class MoviesActivity : AppCompatActivity() {
 
-    private val movieFactory: MovieFactory = MovieFactory()
-    private val viewModel = movieFactory.buildViewModel()
+    private lateinit var movieFactory: MovieFactory
+    private lateinit var viewModel: MovieViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie)
+
+        movieFactory = MovieFactory(this)
+        viewModel = movieFactory.buildViewModel()
+
         val movies = viewModel.viewCreated()
         val movie = viewModel.movieSelected("1")
         Log.d("@dev", movies.toString())
         Log.d("@dev", movie.toString())
         bindDate(movies)
         testXml()
+        testListXml()
     }
 
     override fun onStart() {
@@ -59,6 +64,17 @@ class MoviesActivity : AppCompatActivity() {
 
         val movieSaved = xmlDataSource.findMovie()
         Log.d("@dev", movieSaved.toString())
+
+        xmlDataSource.delete()
+    }
+
+    private fun testListXml() {
+        val movies = viewModel.viewCreated()
+        val xmlDataSource = MovieXmlLocalDataSource(this)
+        xmlDataSource.saveAll(movies)
+
+        val moviesSaved = xmlDataSource.findAll()
+        Log.d("@dev", moviesSaved.toString())
     }
 
     private fun bindDate(movies: List<Movie>) {

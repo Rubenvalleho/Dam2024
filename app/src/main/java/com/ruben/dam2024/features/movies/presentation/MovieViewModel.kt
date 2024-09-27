@@ -6,8 +6,8 @@ import com.ruben.dam2024.features.movies.domain.GetMoviesUseCase
 import com.ruben.dam2024.features.movies.domain.Movie
 
 class MovieViewModel(
-    private val getMoviesUseCase: GetMoviesUseCase,
-    private val getMovieUseCase: GetMovieUseCase
+    private val getMoviesUseCase: GetMovieUseCase,
+    private val getMovieUseCase: GetMoviesUseCase
 ) : ViewModel() {
     //Patron Model-View-View-Model MVVM
 

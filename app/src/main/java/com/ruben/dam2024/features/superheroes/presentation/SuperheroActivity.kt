@@ -6,6 +6,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.ruben.dam2024.R
+import com.ruben.dam2024.features.superheroes.data.local.SuperheroXmlLocalDataSource
 import com.ruben.dam2024.features.superheroes.domain.Superhero
 
 class SuperheroActivity : AppCompatActivity() {
@@ -21,6 +22,7 @@ class SuperheroActivity : AppCompatActivity() {
         Log.d("@dev", superheroes.toString())
         Log.d("@dev", superhero.toString())
         bindDate(superheroes)
+        testXml()
     }
 
     override fun onStart() {
@@ -75,5 +77,16 @@ class SuperheroActivity : AppCompatActivity() {
                 Log.d("@dev", "El superheroe selecionado es: ${it.name}")
             }
         }
+    }
+
+    private fun testXml() {
+        val xmlDataSource = SuperheroXmlLocalDataSource(this)
+        val superhero = viewModel.superheroSelected("1")
+        superhero?.let {
+            xmlDataSource.save(it)
+        }
+
+        val superheroSaved = xmlDataSource.find()
+        Log.d("@dev", superheroSaved.toString())
     }
 }
