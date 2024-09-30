@@ -66,6 +66,12 @@ class MovieXmlLocalDataSource(private val context: Context) {
         }
     }
 
+    fun findById(id: String): Movie? {
+        return sharedPreferences.getString(id, null)?.let { movie ->
+            gson.fromJson(movie, Movie::class.java)
+        }
+    }
+
     fun delete() {
         sharedPreferences.edit().clear().apply()
     }
