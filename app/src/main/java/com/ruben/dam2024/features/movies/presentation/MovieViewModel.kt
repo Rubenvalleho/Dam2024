@@ -11,11 +11,7 @@ class MovieViewModel(
 ) : ViewModel() {
     //Patron Model-View-View-Model MVVM
 
-    fun viewCreated(): List<Movie> {
-        return getMoviesUseCase.invoke()
-    }
-
-    fun movieSelected(id: String): Movie? {
-        return getMovieUseCase.invoke(id)
+    fun viewCreated(movieId: String): Movie? {
+        return getMovieUseCase.invoke(movieId)
     }
 }
