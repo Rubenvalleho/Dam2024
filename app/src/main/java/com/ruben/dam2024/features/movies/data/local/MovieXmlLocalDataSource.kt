@@ -14,6 +14,11 @@ class MovieXmlLocalDataSource(private val context: Context) {
     private val gson = Gson()
 
     fun saveMovie(movie: Movie) {
+
+        val editor = sharedPreferences.edit()
+        editor.putString(movie.id, gson.toJson(movie))
+        editor.apply()
+
         /* Estilo Java
         val editor = sharedPreferences.edit()
         editor.putString("id", movie.id)
@@ -22,13 +27,13 @@ class MovieXmlLocalDataSource(private val context: Context) {
         editor.apply()
         */
 
-        //Estilo kotlin
+        /*Estilo kotlin
         sharedPreferences.edit().apply() {
             putString("id", movie.id)
             putString("title", movie.title)
             putString("poster", movie.poster)
             apply()
-        }
+        }*/
     }
 
     fun saveAll(movies: List<Movie>) {
@@ -76,4 +81,7 @@ class MovieXmlLocalDataSource(private val context: Context) {
         sharedPreferences.edit().clear().apply()
     }
 
+    fun deleteById(id: String) {
+        sharedPreferences.edit().remove(id).commit()
+    }
 }

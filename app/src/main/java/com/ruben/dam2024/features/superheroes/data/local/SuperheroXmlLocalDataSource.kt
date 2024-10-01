@@ -1,6 +1,7 @@
 package com.ruben.dam2024.features.superheroes.data.local
 
 import android.content.Context
+import android.provider.Settings.Global.getString
 import com.google.gson.Gson
 import com.ruben.dam2024.R
 import com.ruben.dam2024.features.superheroes.domain.Superhero
@@ -14,29 +15,22 @@ class SuperheroXmlLocalDataSource(private val context: Context) {
     private val gson = Gson()
 
     fun save(superhero: Superhero) {
-        sharedPref.edit().apply() {
-            putString("id", superhero.id)
-            putString("name", superhero.name)
-            putString("photo", superhero.photoUrl)
-            apply()
-        }
+        val editor = sharedPref.edit()
+        editor.putString(superhero.id, gson.toJson(superhero))
+        editor.apply()
     }
 
     fun saveAll(superheroes: List<Superhero>) {
         val editor = sharedPref.edit()
         superheroes.forEach { superhero ->
             editor.putString(superhero.id, gson.toJson(superhero))
-            editor.apply()
         }
+        editor.apply()
     }
 
-    fun find(): Superhero {
-        sharedPref.apply {
-            return Superhero(
-                getString("id", "")!!,
-                getString("name", "")!!,
-                getString("photo", "")!!
-            )
+    fun findById(id: String): Superhero? {
+        return sharedPref.getString(id, null)?.let { superhero ->
+            gson.fromJson(superhero, Superhero::class.java)
         }
     }
 
@@ -52,5 +46,9 @@ class SuperheroXmlLocalDataSource(private val context: Context) {
 
     fun delete() {
         sharedPref.edit().clear().apply()
+    }
+
+    fun deleteById(id: String) {
+        sharedPref.edit().remove(id).commit()
     }
 }
