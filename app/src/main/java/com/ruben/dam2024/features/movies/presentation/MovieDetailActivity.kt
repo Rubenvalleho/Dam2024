@@ -11,15 +11,30 @@ import com.ruben.dam2024.R
 import com.ruben.dam2024.features.movies.domain.Movie
 
 class MovieDetailActivity : AppCompatActivity() {
+
+    private lateinit var movieFactory: MovieFactory
+    private lateinit var viewModel: MovieDetailViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie_detail)
-        val movieId = intent.getStringExtra(KEY_MOVIE_ID)
-        TODO()
+
+        movieFactory = MovieFactory(this)
+        viewModel = movieFactory.buildMovieDetailViewModel()
+
+        getMovieId()?.let { movieId ->
+            viewModel.viewCreated(movieId)?.let { movie ->
+                bindData(movie)
+            }
+        }
     }
 
     private fun getMovieId(): String? {
         return intent.getStringExtra(KEY_MOVIE_ID)
+    }
+
+    private fun bindData(movie: Movie){
+        TODO("Hacer la pantalla de la vista maestro detalle")
     }
 
     companion object {
@@ -30,9 +45,5 @@ class MovieDetailActivity : AppCompatActivity() {
             intent.putExtra(KEY_MOVIE_ID, movieId)
             return intent
         }
-    }
-
-    private fun bindData(movie: Movie){
-        TODO("Hacer la pantalla de la vista maestro detalle")
     }
 }

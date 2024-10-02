@@ -1,6 +1,5 @@
 package com.ruben.dam2024.features.movies.presentation
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.LinearLayout
@@ -12,14 +11,14 @@ import com.ruben.dam2024.features.movies.domain.Movie
 
 class MoviesActivity : AppCompatActivity() {
 
-    private lateinit var movieFactory: MoviesFactory
+    private lateinit var movieFactory: MovieFactory
     private lateinit var viewModel: MoviesViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie)
 
-        movieFactory = MoviesFactory(this)
+        movieFactory = MovieFactory(this)
         viewModel = movieFactory.buildViewModel()
 
         val movies = viewModel.viewCreated()
