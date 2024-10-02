@@ -7,7 +7,7 @@ import com.ruben.dam2024.features.movies.data.remote.MovieMockRemoteDataSource
 import com.ruben.dam2024.features.movies.domain.GetMovieUseCase
 import com.ruben.dam2024.features.movies.domain.GetMoviesUseCase
 
-class MoviesFactory(private val context: Context) {
+class MovieFactory(private val context: Context) {
 
     private val movieMockRemote = MovieMockRemoteDataSource()
     private val movieLocal = MovieXmlLocalDataSource(context)
