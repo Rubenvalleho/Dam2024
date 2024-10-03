@@ -3,11 +3,13 @@ package com.ruben.dam2024.features.movies.presentation
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.ruben.dam2024.R
+import com.ruben.dam2024.app.extensions.loadUrl
 import com.ruben.dam2024.features.movies.domain.Movie
 
 class MovieDetailActivity : AppCompatActivity() {
@@ -34,6 +36,8 @@ class MovieDetailActivity : AppCompatActivity() {
     }
 
     private fun bindData(movie: Movie){
+        val imageView = findViewById<ImageView>(R.id.poster)
+        imageView.loadUrl(movie.poster)
         TODO("Hacer la pantalla de la vista maestro detalle")
     }
 
