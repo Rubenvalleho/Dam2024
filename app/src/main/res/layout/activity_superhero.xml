@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".features.superheroes.presentation.SuperheroActivity">
+    tools:context=".features.superheroes.presentation.SuperherosActivity">
 
     <LinearLayout
         android:id="@+id/layout_1"

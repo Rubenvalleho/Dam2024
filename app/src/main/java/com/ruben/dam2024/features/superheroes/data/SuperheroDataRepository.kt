@@ -23,6 +23,13 @@ class SuperheroDataRepository(
 
     override fun getSuperhero(id: String): Superhero? {
         val superheroFromLocal = local.findById(id)
+        if (superheroFromLocal == null) {
+            val superhero = remote.getSuperhero(id)
+            superhero?.let {
+                local.save(it)
+                return it
+            }
+        }
         return superheroFromLocal
     }
 }

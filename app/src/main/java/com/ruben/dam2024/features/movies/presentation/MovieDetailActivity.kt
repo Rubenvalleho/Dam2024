@@ -38,7 +38,6 @@ class MovieDetailActivity : AppCompatActivity() {
     private fun bindData(movie: Movie){
         val imageView = findViewById<ImageView>(R.id.poster)
         imageView.loadUrl(movie.poster)
-        TODO("Hacer la pantalla de la vista maestro detalle")
     }
 
     companion object {

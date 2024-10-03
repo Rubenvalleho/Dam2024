@@ -22,12 +22,10 @@ class MoviesActivity : AppCompatActivity() {
         viewModel = movieFactory.buildViewModel()
 
         val movies = viewModel.viewCreated()
-        val movie = viewModel.movieSelected("1")
-        Log.d("@dev", movies.toString())
-        Log.d("@dev", movie.toString())
+        //val movie = viewModel.movieSelected("1")
+        //Log.d("@dev", movies.toString())
+        //Log.d("@dev", movie.toString())
         bindDate(movies)
-        testXml()
-        testListXml()
     }
 
     override fun onStart() {
@@ -55,7 +53,7 @@ class MoviesActivity : AppCompatActivity() {
         Log.d("@dev", "onDestroy")
     }
 
-    private fun testXml() {
+    /*private fun testXml() {
         val xmlDataSource = MovieXmlLocalDataSource(this)
         val movie = viewModel.movieSelected("1")
         movie?.let {
@@ -66,16 +64,16 @@ class MoviesActivity : AppCompatActivity() {
         Log.d("@dev", movieSaved.toString())
 
         xmlDataSource.delete()
-    }
+    }*/
 
-    private fun testListXml() {
+    /*private fun testListXml() {
         val movies = viewModel.viewCreated()
         val xmlDataSource = MovieXmlLocalDataSource(this)
         xmlDataSource.saveAll(movies)
 
         val moviesSaved = xmlDataSource.findAll()
         Log.d("@dev", moviesSaved.toString())
-    }
+    }*/
 
     private fun navigateToMovieDetail(id: String) {
         startActivity(MovieDetailActivity.getIntent(this, id))

@@ -8,7 +8,7 @@ class SuperheroMockRemoteDataSource {
         Superhero(
         "1",
         "Iron Man",
-        "https://cursokotlin.com/wp-content/uploads/2011/07/ironman.jpg"
+        "https://static.wikia.nocookie.net/disney/images/9/96/Iron-Man-AOU-Render.png/revision/latest?cb=20180410032118&path-prefix=es"
         ),
         Superhero(
             "2",

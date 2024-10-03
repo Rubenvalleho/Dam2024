@@ -9,20 +9,29 @@ import com.ruben.dam2024.R
 import com.ruben.dam2024.features.superheroes.data.local.SuperheroXmlLocalDataSource
 import com.ruben.dam2024.features.superheroes.domain.Superhero
 
-class SuperheroActivity : AppCompatActivity() {
+class SuperherosActivity : AppCompatActivity() {
 
-    private val superheroFactory: SuperheroFactory = SuperheroFactory(this)
-    private val viewModel = superheroFactory.buildViewModel()
+  //  private val superheroFactory: SuperheroFactory = SuperheroFactory(this)
+  //  private val viewModel = superheroFactory.buildViewModel()
+
+    lateinit var superheroFactory: SuperheroFactory
+    lateinit var viewModel: SuperherosViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_superhero)
+
+        superheroFactory = SuperheroFactory(this)
+        viewModel = superheroFactory.buildViewModel()
+
+
         val superheroes = viewModel.viewCreated()
-        val superhero = viewModel.superheroSelected("1")
-        Log.d("@dev", superheroes.toString())
-        Log.d("@dev", superhero.toString())
+        //val superhero = viewModel.superheroSelected("1")
+        //Log.d("@dev", superheroes.toString())
+        //Log.d("@dev", superhero.toString())
         bindDate(superheroes)
-        testXml()
+
+        //testXml()
     }
 
     override fun onStart() {
@@ -54,32 +63,24 @@ class SuperheroActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.superhero_id_1).text = superheroes[0].id
         findViewById<TextView>(R.id.superhero_name_1).text = superheroes[0].name
         findViewById<LinearLayout>(R.id.layout_1).setOnClickListener {
-            val superhero1: Superhero? = viewModel.superheroSelected(superheroes[0].id)
-            superhero1?.let {
-                Log.d("@dev", "El superheroe selecionado es: ${it.name}")
-            }
+            //val superhero1: Superhero? = viewModel.superheroSelected(superheroes[0].id)
+            navigateToSuperheroDetail(superheroes[0].id)
         }
 
         findViewById<TextView>(R.id.superhero_id_2).text = superheroes[1].id
         findViewById<TextView>(R.id.superhero_name_2).text = superheroes[1].name
         findViewById<LinearLayout>(R.id.layout_2).setOnClickListener {
-            val superhero2: Superhero? = viewModel.superheroSelected(superheroes[1].id)
-            superhero2?.let {
-                Log.d("@dev", "El superheroe selecionado es: ${it.name}")
-            }
+            navigateToSuperheroDetail(superheroes[1].id)
         }
 
         findViewById<TextView>(R.id.superhero_id_3).text = superheroes[2].id
         findViewById<TextView>(R.id.superhero_name_3).text = superheroes[2].name
         findViewById<LinearLayout>(R.id.layout_3).setOnClickListener {
-            val superhero3: Superhero? = viewModel.superheroSelected(superheroes[2].id)
-            superhero3?.let {
-                Log.d("@dev", "El superheroe selecionado es: ${it.name}")
-            }
+            navigateToSuperheroDetail(superheroes[2].id)
         }
     }
 
-    private fun testXml() {
+    /*private fun testXml() {
         val xmlDataSource = SuperheroXmlLocalDataSource(this)
         val superhero = viewModel.superheroSelected("1")
         superhero?.let {
@@ -88,5 +89,9 @@ class SuperheroActivity : AppCompatActivity() {
 
         val superheroSaved = xmlDataSource.findById("1")
         Log.d("@dev", superheroSaved.toString())
+    }*/
+
+    private fun navigateToSuperheroDetail(superheroId: String) {
+        startActivity(SuperheroDetailActivity.getIntent(this, superheroId))
     }
 }
