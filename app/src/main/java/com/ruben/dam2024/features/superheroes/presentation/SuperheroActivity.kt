@@ -11,7 +11,7 @@ import com.ruben.dam2024.features.superheroes.domain.Superhero
 
 class SuperheroActivity : AppCompatActivity() {
 
-    private val superheroFactory: SuperheroFactory = SuperheroFactory()
+    private val superheroFactory: SuperheroFactory = SuperheroFactory(this)
     private val viewModel = superheroFactory.buildViewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -86,7 +86,7 @@ class SuperheroActivity : AppCompatActivity() {
             xmlDataSource.save(it)
         }
 
-        val superheroSaved = xmlDataSource.find()
+        val superheroSaved = xmlDataSource.findById("1")
         Log.d("@dev", superheroSaved.toString())
     }
 }

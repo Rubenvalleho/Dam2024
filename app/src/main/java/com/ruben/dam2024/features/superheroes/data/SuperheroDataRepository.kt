@@ -22,14 +22,7 @@ class SuperheroDataRepository(
     }
 
     override fun getSuperhero(id: String): Superhero? {
-        var superheroFromLocal = local.find()
-        if (superheroFromLocal.id != id) {
-            val superheroFromRemote = remote.getSuperhero(id)
-            superheroFromRemote?.let {
-                superheroFromLocal = it
-            }
-            return superheroFromRemote
-        }
+        val superheroFromLocal = local.findById(id)
         return superheroFromLocal
     }
 }
