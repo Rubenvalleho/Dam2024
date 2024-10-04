@@ -15,8 +15,9 @@
         <activity
             android:name=".features.movies.presentation.MovieDetailActivity"
             android:exported="false" />
+
         <activity
-            android:name=".features.superheroes.presentation.SuperherosActivity"
+            android:name=".features.movies.presentation.MoviesActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,6 +25,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- <activity
+            android:name=".features.superheroes.presentation.SuperherosActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity> -->
 
         <activity
             android:name=".features.superheroes.presentation.SuperheroDetailActivity"

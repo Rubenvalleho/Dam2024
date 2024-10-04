@@ -5,7 +5,9 @@ import android.util.Log
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import com.ruben.dam2024.R
+import com.ruben.dam2024.app.domain.ErrorApp
 import com.ruben.dam2024.features.movies.data.local.MovieXmlLocalDataSource
 import com.ruben.dam2024.features.movies.domain.Movie
 
@@ -22,10 +24,31 @@ class MoviesActivity : AppCompatActivity() {
         viewModel = movieFactory.buildViewModel()
 
         val movies = viewModel.viewCreated()
+
+
+        val movieObserver = Observer<MoviesViewModel.UiState> { uiState ->
+            uiState.movies?.let {
+                bindData(it)
+            }
+
+            uiState.errorApp?.let {
+
+            }
+
+            if (uiState.isLoading) {
+                //Muestro el cargando...
+            } else {
+                //oculto el cargando...
+            }
+        }
+
+        viewModel.uiState.observe(this, movieObserver)
+
+
         //val movie = viewModel.movieSelected("1")
         //Log.d("@dev", movies.toString())
         //Log.d("@dev", movie.toString())
-        bindDate(movies)
+
     }
 
     override fun onStart() {
@@ -79,7 +102,16 @@ class MoviesActivity : AppCompatActivity() {
         startActivity(MovieDetailActivity.getIntent(this, id))
     }
 
-    private fun bindDate(movies: List<Movie>) {
+    private fun showError(errorApp: ErrorApp) {
+        when (errorApp) {
+            ErrorApp.DataErrorApp -> TODO()
+            ErrorApp.InternetErroApp -> TODO()
+            ErrorApp.ServerErrorApp -> TODO()
+            ErrorApp.UnknowErrorApp -> TODO()
+        }
+    }
+
+    private fun bindData(movies: List<Movie>) {
         findViewById<TextView>(R.id.movie_id_1).text = movies[0].id
         findViewById<TextView>(R.id.movie_title_1).text = movies[0].title
         findViewById<LinearLayout>(R.id.layout_1).setOnClickListener {
@@ -100,7 +132,7 @@ class MoviesActivity : AppCompatActivity() {
         }
 
         findViewById<TextView>(R.id.movie_id_4).text = movies[3].id
-        findViewById<TextView>(R.id.movie_id_4).text = movies[3].title
+        findViewById<TextView>(R.id.movie_title_4).text = movies[3].title
         findViewById<LinearLayout>(R.id.layout_4).setOnClickListener {
             navigateToMovieDetail(movies[3].id)
         }
