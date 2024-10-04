@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -8,9 +8,23 @@
     android:orientation="vertical"
     tools:context=".features.movies.presentation.MovieDetailActivity">
 
+    <TextView
+        android:id="@+id/nombre_pelicula"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="50dp"
+        app:layout_editor_absoluteX="@+id/main"
+        app:layout_editor_absoluteY="@+id/main"
+        />
+
     <ImageView
         android:id="@+id/poster"
-        android:layout_width="64dp"
-        android:layout_height="64dp"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@id/nombre_pelicula"
+        app:flow_horizontalAlign="center"
+        tools:ignore="MissingConstraints" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
