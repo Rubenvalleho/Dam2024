@@ -5,7 +5,7 @@ import com.ruben.dam2024.features.superheroes.domain.GetSuperheroUseCase
 import com.ruben.dam2024.features.superheroes.domain.GetSuperheroesUseCase
 import com.ruben.dam2024.features.superheroes.domain.Superhero
 
-class SuperheroViewModel(
+class SuperherosViewModel(
     private val getSuperheroesUseCase: GetSuperheroesUseCase,
     private val getSuperheroUseCase: GetSuperheroUseCase
 ) : ViewModel() {

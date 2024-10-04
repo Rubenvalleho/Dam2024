@@ -12,7 +12,7 @@ import com.ruben.dam2024.features.movies.domain.Movie
 class MoviesActivity : AppCompatActivity() {
 
     private lateinit var movieFactory: MovieFactory
-    private lateinit var viewModel: MovieViewModel
+    private lateinit var viewModel: MoviesViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,12 +22,10 @@ class MoviesActivity : AppCompatActivity() {
         viewModel = movieFactory.buildViewModel()
 
         val movies = viewModel.viewCreated()
-        val movie = viewModel.movieSelected("1")
-        Log.d("@dev", movies.toString())
-        Log.d("@dev", movie.toString())
+        //val movie = viewModel.movieSelected("1")
+        //Log.d("@dev", movies.toString())
+        //Log.d("@dev", movie.toString())
         bindDate(movies)
-        testXml()
-        testListXml()
     }
 
     override fun onStart() {
@@ -55,7 +53,7 @@ class MoviesActivity : AppCompatActivity() {
         Log.d("@dev", "onDestroy")
     }
 
-    private fun testXml() {
+    /*private fun testXml() {
         val xmlDataSource = MovieXmlLocalDataSource(this)
         val movie = viewModel.movieSelected("1")
         movie?.let {
@@ -66,53 +64,45 @@ class MoviesActivity : AppCompatActivity() {
         Log.d("@dev", movieSaved.toString())
 
         xmlDataSource.delete()
-    }
+    }*/
 
-    private fun testListXml() {
+    /*private fun testListXml() {
         val movies = viewModel.viewCreated()
         val xmlDataSource = MovieXmlLocalDataSource(this)
         xmlDataSource.saveAll(movies)
 
         val moviesSaved = xmlDataSource.findAll()
         Log.d("@dev", moviesSaved.toString())
+    }*/
+
+    private fun navigateToMovieDetail(id: String) {
+        startActivity(MovieDetailActivity.getIntent(this, id))
     }
 
     private fun bindDate(movies: List<Movie>) {
         findViewById<TextView>(R.id.movie_id_1).text = movies[0].id
         findViewById<TextView>(R.id.movie_title_1).text = movies[0].title
         findViewById<LinearLayout>(R.id.layout_1).setOnClickListener {
-            val movie1: Movie? = viewModel.movieSelected(movies[0].id)
-            movie1?.let { movie ->
-                Log.d("@dev", "Pelicula seleccionada: ${movie.title}")
-            }
+            navigateToMovieDetail(movies[0].id)
         }
         // val textView1 = findViewById<LinearLayout>(R.id.layout_1)
 
         findViewById<TextView>(R.id.movie_id_2).text = movies[1].id
         findViewById<TextView>(R.id.movie_title_2).text = movies[1].title
         findViewById<LinearLayout>(R.id.layout_2).setOnClickListener {
-            val movie2: Movie? = viewModel.movieSelected(movies[1].id)
-            movie2?.let { movie ->
-                Log.d("@dev", "Pelicula seleccionada: ${movie.title}")
-            }
+            navigateToMovieDetail(movies[1].id)
         }
 
         findViewById<TextView>(R.id.movie_id_3).text = movies[2].id
         findViewById<TextView>(R.id.movie_title_3).text = movies[2].title
         findViewById<LinearLayout>(R.id.layout_3).setOnClickListener {
-            val movie3: Movie? = viewModel.movieSelected(movies[2].id)
-            movie3?.let { movie ->
-                Log.d("@dev", "Pelicula seleccionada: ${movie.title}")
-            }
+            navigateToMovieDetail(movies[2].id)
         }
 
         findViewById<TextView>(R.id.movie_id_4).text = movies[3].id
         findViewById<TextView>(R.id.movie_id_4).text = movies[3].title
         findViewById<LinearLayout>(R.id.layout_4).setOnClickListener {
-            val movie4: Movie? = viewModel.movieSelected(movies[3].id)
-            movie4?.let { movie ->
-                Log.d("@dev", "Pelicula seleccionada: ${movie.title}")
-            }
+            navigateToMovieDetail(movies[3].id)
         }
     }
 }
