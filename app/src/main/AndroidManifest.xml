@@ -16,7 +16,7 @@
             android:name=".features.movies.presentation.MovieDetailActivity"
             android:exported="false" />
 
-        <!-- <activity
+        <activity
             android:name=".features.movies.presentation.MoviesActivity"
             android:exported="true">
             <intent-filter>
@@ -24,9 +24,9 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> -->
+        </activity>
 
-        <activity
+        <!-- <activity
             android:name=".features.superheroes.presentation.SuperherosActivity"
             android:exported="true">
             <intent-filter>
@@ -34,7 +34,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
+        </activity> -->
 
         <activity
             android:name=".features.superheroes.presentation.SuperheroDetailActivity"

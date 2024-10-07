@@ -47,6 +47,7 @@ class MovieDetailActivity : AppCompatActivity() {
 
     private fun bindData(movie: Movie){
         //findViewById<TextView>(R.id.nombre_pelicula).text = movie.title
+        findViewById<TextView>(R.id.nombre_pelicula).text = movie.title
         val imageView = findViewById<ImageView>(R.id.poster)
         imageView.loadUrl(movie.poster)
     }
