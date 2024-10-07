@@ -26,19 +26,19 @@ class MovieDetailActivity : AppCompatActivity() {
         movieFactory = MovieFactory(this)
         viewModel = movieFactory.buildMovieDetailViewModel()
 
+        setupObserver()
+
+        getMovieId()?.let { movieId ->
+            viewModel.viewCreated(movieId)
+        }
+
 /*        getMovieId()?.let { movieId ->
             viewModel.viewCreated(movieId)?.let { movie ->
                 bindData(movie)
             }
         }
 */
-        val movieObserver = Observer<MovieDetailViewModel.UiState> { uiState ->
-            uiState.movie?.let {
-                bindData(it)
-            }
-        }
 
-        viewModel.uiState.observe(this, movieObserver)
     }
 
     private fun getMovieId(): String? {
@@ -59,5 +59,24 @@ class MovieDetailActivity : AppCompatActivity() {
             intent.putExtra(KEY_MOVIE_ID, movieId)
             return intent
         }
+    }
+
+    private fun setupObserver() {
+        val movieObserver = Observer<MovieDetailViewModel.UiState> { uiState ->
+            uiState.movie?.let {
+                bindData(it)
+            }
+
+            if (uiState.isLoading) {
+                //Muestro el cargando...
+            } else {
+                //oculto el cargando...
+            }
+
+            uiState.errorApp?.let {
+                //showError(it)
+            }
+        }
+        viewModel.uiState.observe(this, movieObserver)
     }
 }

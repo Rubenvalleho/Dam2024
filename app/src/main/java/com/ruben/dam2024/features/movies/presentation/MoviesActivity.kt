@@ -25,30 +25,12 @@ class MoviesActivity : AppCompatActivity() {
 
         val movies = viewModel.viewCreated()
 
-
-        val movieObserver = Observer<MoviesViewModel.UiState> { uiState ->
-            uiState.movies?.let {
-                bindData(it)
-            }
-
-            uiState.errorApp?.let {
-
-            }
-
-            if (uiState.isLoading) {
-                //Muestro el cargando...
-            } else {
-                //oculto el cargando...
-            }
-        }
-
-        viewModel.uiState.observe(this, movieObserver)
-
+        setupObserver()
+        viewModel.viewCreated()
 
         //val movie = viewModel.movieSelected("1")
         //Log.d("@dev", movies.toString())
         //Log.d("@dev", movie.toString())
-
     }
 
     override fun onStart() {
@@ -76,6 +58,9 @@ class MoviesActivity : AppCompatActivity() {
         Log.d("@dev", "onDestroy")
     }
 
+    private fun getMovies() {
+        viewModel.viewCreated()
+    }
     /*private fun testXml() {
         val xmlDataSource = MovieXmlLocalDataSource(this)
         val movie = viewModel.movieSelected("1")
@@ -97,6 +82,26 @@ class MoviesActivity : AppCompatActivity() {
         val moviesSaved = xmlDataSource.findAll()
         Log.d("@dev", moviesSaved.toString())
     }*/
+
+    private fun setupObserver() {
+        val movieObserver = Observer<MoviesViewModel.UiState> { uiState ->
+            uiState.movies?.let {
+                bindData(it)
+            }
+
+            uiState.errorApp?.let {
+                //Muestro el error
+            }
+
+            if (uiState.isLoading) {
+                //Muestro el cargando...
+            } else {
+                //oculto el cargando...
+            }
+        }
+
+        viewModel.uiState.observe(this, movieObserver)
+    }
 
     private fun navigateToMovieDetail(id: String) {
         startActivity(MovieDetailActivity.getIntent(this, id))

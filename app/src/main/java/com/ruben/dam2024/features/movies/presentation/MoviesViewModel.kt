@@ -29,7 +29,6 @@ class MoviesViewModel(
 
             //value origen: Main - Destino: Main
             //_uiState.value = UiState(movies = movies)
-
         }
     }
 
