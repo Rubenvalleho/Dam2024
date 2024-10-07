@@ -9,6 +9,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.Observer
 import com.ruben.dam2024.R
 import com.ruben.dam2024.app.extensions.loadUrl
 import com.ruben.dam2024.features.movies.domain.Movie
@@ -25,11 +26,19 @@ class MovieDetailActivity : AppCompatActivity() {
         movieFactory = MovieFactory(this)
         viewModel = movieFactory.buildMovieDetailViewModel()
 
-        getMovieId()?.let { movieId ->
+/*        getMovieId()?.let { movieId ->
             viewModel.viewCreated(movieId)?.let { movie ->
                 bindData(movie)
             }
         }
+*/
+        val movieObserver = Observer<MovieDetailViewModel.UiState> { uiState ->
+            uiState.movie?.let {
+                bindData(it)
+            }
+        }
+
+        viewModel.uiState.observe(this, movieObserver)
     }
 
     private fun getMovieId(): String? {
@@ -37,7 +46,7 @@ class MovieDetailActivity : AppCompatActivity() {
     }
 
     private fun bindData(movie: Movie){
-        findViewById<TextView>(R.id.nombre_pelicula).text = movie.title
+        //findViewById<TextView>(R.id.nombre_pelicula).text = movie.title
         val imageView = findViewById<ImageView>(R.id.poster)
         imageView.loadUrl(movie.poster)
     }
