@@ -13,8 +13,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class SuperherosViewModel(
-    private val getSuperheroesUseCase: GetSuperheroesUseCase,
-    private val getSuperheroUseCase: GetSuperheroUseCase
+    private val getSuperheroesUseCase: GetSuperheroesUseCase
 ) : ViewModel() {
 
     private val _uiState = MutableLiveData<UiState>(UiState())

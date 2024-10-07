@@ -15,8 +15,8 @@ class SuperherosActivity : AppCompatActivity() {
   //  private val superheroFactory: SuperheroFactory = SuperheroFactory(this)
   //  private val viewModel = superheroFactory.buildViewModel()
 
-    lateinit var superheroFactory: SuperheroFactory
-    lateinit var viewModel: SuperherosViewModel
+    private lateinit var superheroFactory: SuperheroFactory
+    private lateinit var viewModel: SuperherosViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
