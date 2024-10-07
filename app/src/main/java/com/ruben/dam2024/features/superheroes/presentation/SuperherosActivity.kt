@@ -5,6 +5,7 @@ import android.util.Log
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import com.ruben.dam2024.R
 import com.ruben.dam2024.features.superheroes.data.local.SuperheroXmlLocalDataSource
 import com.ruben.dam2024.features.superheroes.domain.Superhero
@@ -29,8 +30,14 @@ class SuperherosActivity : AppCompatActivity() {
         //val superhero = viewModel.superheroSelected("1")
         //Log.d("@dev", superheroes.toString())
         //Log.d("@dev", superhero.toString())
-        bindDate(superheroes)
 
+        val superheroObserver = Observer<SuperherosViewModel.UiState> { uiState ->
+            uiState.superheroes?.let {
+                bindData(it)
+            }
+        }
+
+        viewModel.uiState.observe(this, superheroObserver)
         //testXml()
     }
 
@@ -59,7 +66,7 @@ class SuperherosActivity : AppCompatActivity() {
         Log.d("@dev", "onDestroy")
     }
 
-    private fun bindDate(superheroes: List<Superhero>) {
+    private fun bindData(superheroes: List<Superhero>) {
         findViewById<TextView>(R.id.superhero_id_1).text = superheroes[0].id
         findViewById<TextView>(R.id.superhero_name_1).text = superheroes[0].name
         findViewById<LinearLayout>(R.id.layout_1).setOnClickListener {

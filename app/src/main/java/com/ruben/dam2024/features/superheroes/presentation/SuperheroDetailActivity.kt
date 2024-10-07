@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import com.ruben.dam2024.R
 import com.ruben.dam2024.app.extensions.loadUrl
 import com.ruben.dam2024.features.superheroes.domain.Superhero
@@ -20,12 +21,11 @@ class SuperheroDetailActivity : AppCompatActivity() {
         superheroFactory = SuperheroFactory(this)
         superheroViewModel = superheroFactory.buildDetailViewModel()
 
-        getSuperheroId()?.let { superheroId ->
-            superheroViewModel.viewCreated(superheroId)?.let { superhero ->
-                binData(superhero)
-            }
-        }
+        setupObserver()
 
+        getSuperheroId()?.let { superheroId ->
+            superheroViewModel.viewCreated(superheroId)
+        }
     }
 
     private fun getSuperheroId(): String? {
@@ -46,4 +46,23 @@ class SuperheroDetailActivity : AppCompatActivity() {
             return intent
         }
     }
+
+    private fun setupObserver() {
+        val superheroObserver = Observer<SuperheroDetailViewModel.UiState> { uiState ->
+            uiState.superhero?.let {
+                binData(it)
+            }
+            if (uiState.isLoading) {
+                //Muestro el cargando...
+            } else {
+                //oculto el cargando...
+            }
+
+            uiState.errorApp?.let {
+                //showError(it)
+            }
+        }
+        superheroViewModel.uiState.observe(this, superheroObserver)
+    }
+
 }
