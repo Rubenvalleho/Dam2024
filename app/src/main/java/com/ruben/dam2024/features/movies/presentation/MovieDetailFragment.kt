@@ -56,36 +56,9 @@ class MovieDetailFragment: Fragment() {
         viewModel.uiState.observe(viewLifecycleOwner, movieObserver)
     }
 
-    private fun bindData(movies: List<Movie>) {
-        binding.movieId1.text = movies[0].id
-        binding.movieTitle1.text = movies[0].title
-        binding.layout1.setOnClickListener {
-            findNavController().navigate(R.id.action_movies_fragment_to_movie_detail_fragment)
-        }
-        // val textView1 = findViewById<LinearLayout>(R.id.layout_1)
+    private fun bindData(movie: Movie) {
 
-        binding.movieId2.text = movies[1].id
-        binding.movieTitle2.text = movies[1].title
-        binding.layout2.setOnClickListener {
-            navigateToMovieDetail(movies[1].id)
-        }
 
-        binding.movieId3.text = movies[2].id
-        binding.movieTitle3.text = movies[2].title
-        binding.layout3.setOnClickListener {
-            navigateToMovieDetail(movies[2].id)
-        }
-
-        binding.movieId4.text = movies[3].id
-        binding.movieTitle4.text = movies[3].title
-        binding.layout4.setOnClickListener {
-            navigateToMovieDetail(movies[3].id)
-        }
-
-    }
-
-    private fun navigateToMovieDetail(id: String) {
-        startActivity(MovieDetailActivity.getIntent(requireContext(), id))
     }
 
     override fun onDestroyView() {

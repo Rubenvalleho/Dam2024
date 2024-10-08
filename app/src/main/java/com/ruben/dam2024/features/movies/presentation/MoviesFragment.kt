@@ -63,7 +63,7 @@ class MoviesFragment : Fragment() {
         binding.movieId1.text = movies[0].id
         binding.movieTitle1.text = movies[0].title
         binding.layout1.setOnClickListener {
-            findNavController().navigate(R.id.action_movies_fragment_to_movie_detail_fragment)
+            //findNavController().navigate(R.id.action_movies_fragment_to_movie_detail_fragment)
         }
         // val textView1 = findViewById<LinearLayout>(R.id.layout_1)
 
