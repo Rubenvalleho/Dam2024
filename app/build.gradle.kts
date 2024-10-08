@@ -33,6 +33,9 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -47,6 +50,9 @@ dependencies {
     implementation(libs.gson.serializer) //Libreria para serializar objetos
     implementation(libs.glide)
     implementation(libs.viewmodel.scope)
+    implementation(libs.nav.ui)
+    implementation(libs.nav.fragment)
+    implementation(libs.nav.fragment.ktx)
 
     //Librerias para testing
     testImplementation(libs.junit)
