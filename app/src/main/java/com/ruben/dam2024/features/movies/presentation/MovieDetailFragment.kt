@@ -37,8 +37,8 @@ class MovieDetailFragment: Fragment() {
     }
 
     private fun setupObserver() {
-        val movieObserver = Observer<MoviesViewModel.UiState> { uiState ->
-            uiState.movies?.let {
+        val movieDetailObserver = Observer<MovieDetailViewModel.UiState> { uiState ->
+            uiState.movie?.let {
                 bindData(it)
             }
 
@@ -53,7 +53,7 @@ class MovieDetailFragment: Fragment() {
             }
         }
 
-        viewModel.uiState.observe(viewLifecycleOwner, movieObserver)
+        viewModel.uiState.observe(viewLifecycleOwner, movieDetailObserver)
     }
 
     private fun bindData(movie: Movie) {
