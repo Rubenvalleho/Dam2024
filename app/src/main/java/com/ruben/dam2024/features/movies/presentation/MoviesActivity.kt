@@ -81,18 +81,6 @@ class MoviesActivity : AppCompatActivity() {
         Log.d("@dev", moviesSaved.toString())
     }*/
 
-    private fun navigateToMovieDetail(id: String) {
-        startActivity(MovieDetailActivity.getIntent(this, id))
-    }
-
-    private fun showError(errorApp: ErrorApp) {
-        when (errorApp) {
-            ErrorApp.DataErrorApp -> TODO()
-            ErrorApp.InternetErroApp -> TODO()
-            ErrorApp.ServerErrorApp -> TODO()
-            ErrorApp.UnknowErrorApp -> TODO()
-        }
-    }
 
 
 }

@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.ruben.dam2024.R
+import com.ruben.dam2024.app.domain.ErrorApp
 import com.ruben.dam2024.databinding.FragmentMoviesBinding
 import com.ruben.dam2024.features.movies.domain.Movie
 
@@ -89,6 +90,15 @@ class MoviesFragment : Fragment() {
 
     private fun navigateToMovieDetail(id: String) {
         startActivity(MovieDetailActivity.getIntent(requireContext(), id))
+    }
+
+    private fun showError(errorApp: ErrorApp) {
+        when (errorApp) {
+            ErrorApp.DataErrorApp -> TODO()
+            ErrorApp.InternetErroApp -> TODO()
+            ErrorApp.ServerErrorApp -> TODO()
+            ErrorApp.UnknowErrorApp -> TODO()
+        }
     }
 
     override fun onDestroyView() {
