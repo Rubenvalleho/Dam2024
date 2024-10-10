@@ -10,7 +10,8 @@ import com.ruben.dam2024.features.superheroes.domain.Superhero
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class SuperheroListViewModel(private val getSuperheroesUseCase: GetSuperheroesUseCase): ViewModel() {
+class SuperheroListViewModel(private val getSuperheroesUseCase: GetSuperheroesUseCase) :
+    ViewModel() {
 
     private val _uiState = MutableLiveData<UiState>()
     val uiState: LiveData<UiState> = _uiState

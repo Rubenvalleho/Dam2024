@@ -33,7 +33,7 @@ class SuperherosActivity : AppCompatActivity() {
 
         val superheroObserver = Observer<SuperherosViewModel.UiState> { uiState ->
             uiState.superheroes?.let {
-                bindData(it)
+                //bindData(it)
             }
         }
 
@@ -66,7 +66,7 @@ class SuperherosActivity : AppCompatActivity() {
         Log.d("@dev", "onDestroy")
     }
 
-    private fun bindData(superheroes: List<Superhero>) {
+    /*private fun bindData(superheroes: List<Superhero>) {
         findViewById<TextView>(R.id.superhero_id_1).text = superheroes[0].id
         findViewById<TextView>(R.id.superhero_name_1).text = superheroes[0].name
         findViewById<LinearLayout>(R.id.layout_1).setOnClickListener {
@@ -100,5 +100,5 @@ class SuperherosActivity : AppCompatActivity() {
 
     private fun navigateToSuperheroDetail(superheroId: String) {
         startActivity(SuperheroDetailActivity.getIntent(this, superheroId))
-    }
+    }*/
 }
