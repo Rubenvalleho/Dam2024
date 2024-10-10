@@ -26,12 +26,12 @@ class MovieDetailActivity : AppCompatActivity() {
         movieFactory = MovieFactory(this)
         viewModel = movieFactory.buildMovieDetailViewModel()
 
-        setupObserver()
+        //setupObserver()
 
-        getMovieId()?.let { movieId ->
+/*        getMovieId()?.let { movieId ->
             viewModel.viewCreated(movieId)
         }
-
+*/
 /*        getMovieId()?.let { movieId ->
             viewModel.viewCreated(movieId)?.let { movie ->
                 bindData(movie)
@@ -61,7 +61,7 @@ class MovieDetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun setupObserver() {
+    /*private fun setupObserver() {
         val movieObserver = Observer<MovieDetailViewModel.UiState> { uiState ->
             uiState.movie?.let {
                 bindData(it)
@@ -78,5 +78,5 @@ class MovieDetailActivity : AppCompatActivity() {
             }
         }
         viewModel.uiState.observe(this, movieObserver)
-    }
+    }*/
 }

@@ -4,39 +4,52 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.AttributeSet
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.NavArgs
+import androidx.navigation.fragment.navArgs
 import com.ruben.dam2024.R
 import com.ruben.dam2024.app.extensions.loadUrl
 import com.ruben.dam2024.databinding.FragmentSuperheroDetailBinding
 import com.ruben.dam2024.features.superheroes.domain.Superhero
 
-class SuperheroDetailFragment : AppCompatActivity() {
+class SuperheroDetailFragment : Fragment() {
     private lateinit var superheroFactory: SuperheroFactory
     private lateinit var superheroViewModel: SuperheroDetailViewModel
 
     private var _binding: FragmentSuperheroDetailBinding? = null
     private val binding = _binding!!
 
+    private val superheroArgs: SuperheroDetailFragmentArgs by navArgs()
+
     override fun onCreateView(
-        parent: View?,
-        name: String,
-        context: Context,
-        attrs: AttributeSet
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentSuperheroDetailBinding.inflate(layoutInflater)
         return binding.root
     }
 
-    private fun getSuperheroId(): String? {
-        return intent.getStringExtra(KEY_SUPERHERO_ID)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        superheroArgs.superheroId
     }
 
+    /*private fun getSuperheroId(): String? {
+        return intent.getStringExtra(KEY_SUPERHERO_ID)
+    }*/
+
     private fun binData(superhero: Superhero) {
-        val imageView = findViewById<ImageView>(R.id.superhero_image1)
-        imageView.loadUrl(superhero.photoUrl)
+        binding.apply {
+            superheroImage1.loadUrl(superhero.photoUrl)
+            superheroName1.text = superhero.name
+        }
     }
 
     companion object {
@@ -62,9 +75,10 @@ class SuperheroDetailFragment : AppCompatActivity() {
 
             uiState.errorApp?.let {
                 //showError(it)
+            } ?: run {
+
             }
         }
         superheroViewModel.uiState.observe(this, superheroObserver)
     }
-
 }

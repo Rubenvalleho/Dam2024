@@ -9,9 +9,12 @@
     tools:context=".features.superheroes.presentation.SuperherosActivity">
 
     <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/container"
+        android:name="androidx.fragment.app.FragmentContainerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="">
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/nav_graph">
 
     </androidx.fragment.app.FragmentContainerView>
 
