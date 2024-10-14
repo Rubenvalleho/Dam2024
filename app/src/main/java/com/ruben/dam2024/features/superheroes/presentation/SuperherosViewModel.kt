@@ -23,7 +23,7 @@ class SuperherosViewModel(
         viewModelScope.launch(Dispatchers.IO) {
             val superheroes = getSuperheroesUseCase.invoke()
 
-            _uiState.postValue(UiState(superheroes = superheroes))
+            _uiState.postValue(UiState(superheroes = superheroes)) 
         }
     }
 

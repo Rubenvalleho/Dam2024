@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".features.movies.presentation.MoviesActivity">
+    tools:context=".features.movies.presentation.MoviesFragment">
 
     <LinearLayout
         android:id="@+id/layout_1"

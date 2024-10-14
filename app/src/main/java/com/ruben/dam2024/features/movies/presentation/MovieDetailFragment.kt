@@ -13,7 +13,7 @@ import com.ruben.dam2024.features.movies.domain.Movie
 
 class MovieDetailFragment: Fragment() {
     private lateinit var movieFactory: MovieFactory
-    private lateinit var viewModel: MoviesViewModel
+    private lateinit var viewModel: MovieDetailViewModel
 
     private var _binding: FragmentMoviesBinding? = null
     private val binding get() = _binding!!
@@ -32,8 +32,10 @@ class MovieDetailFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupObserver()
         movieFactory = MovieFactory(requireContext())
-        viewModel = movieFactory.buildViewModel()
-        viewModel.viewCreated()
+        viewModel = movieFactory.buildMovieDetailViewModel()
+        getMovieId()?.let {
+            viewModel.viewCreated(it)
+        }
     }
 
     private fun setupObserver() {
@@ -52,8 +54,11 @@ class MovieDetailFragment: Fragment() {
                 //oculto el cargando...
             }
         }
-
         viewModel.uiState.observe(viewLifecycleOwner, movieDetailObserver)
+    }
+
+    private fun getMovieId(): String? {
+        return "1"
     }
 
     private fun bindData(movie: Movie) {

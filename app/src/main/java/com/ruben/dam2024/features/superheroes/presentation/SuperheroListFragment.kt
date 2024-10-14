@@ -98,7 +98,7 @@ class SuperheroListFragment : Fragment() {
 
     private fun navigateToSuperheroDetail(superheroId: String) {
         findNavController().navigate(
-            SuperheroListFragmentDirections.actionSuperheroListFragmentToSuperheroDetailFragment(
+            SuperheroListFragmentDirections.actionFromSuperheroListToSuperheroDetail(
                 superheroId
             )
         )
