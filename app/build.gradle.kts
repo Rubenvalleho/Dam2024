@@ -54,6 +54,8 @@ dependencies {
     implementation(libs.nav.ui)
     implementation(libs.nav.fragment)
     implementation(libs.nav.fragment.ktx)
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.converter.gson)
 
     //Librerias para testing
     testImplementation(libs.junit)

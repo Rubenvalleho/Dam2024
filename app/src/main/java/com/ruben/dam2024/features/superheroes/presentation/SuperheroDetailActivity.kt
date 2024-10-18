@@ -34,7 +34,7 @@ class SuperheroDetailActivity : AppCompatActivity() {
 
     private fun binData(superhero: Superhero) {
         val imageView = findViewById<ImageView>(R.id.superhero_image1)
-        imageView.loadUrl(superhero.photoUrl)
+        //imageView.loadUrl(superhero.photoUrl)
     }
 
     companion object {

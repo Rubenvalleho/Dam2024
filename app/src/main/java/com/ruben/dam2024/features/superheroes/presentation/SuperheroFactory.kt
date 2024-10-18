@@ -6,12 +6,15 @@ import com.ruben.dam2024.features.superheroes.data.remote.SuperheroMockRemoteDat
 import com.ruben.dam2024.features.superheroes.domain.GetSuperheroUseCase
 import com.ruben.dam2024.features.superheroes.domain.GetSuperheroesUseCase
 import android.content.Context
+import com.ruben.dam2024.app.data.api.ApiClient
+import com.ruben.dam2024.features.superheroes.data.remote.SuperheroApiRemoteDataSource
+import com.ruben.dam2024.features.superheroes.data.remote.SuperheroService
 
 class SuperheroFactory(private val context: Context) {
 
-    private val superheroMockRemoteDataSource = SuperheroMockRemoteDataSource()
+    private val superheroApiRemoteDataSource = getSuperheroApiRemoteDataSource()
     private val superheroXmlLocalDataSource = SuperheroXmlLocalDataSource(context)
-    private val superheroDataRepository = SuperheroDataRepository(superheroMockRemoteDataSource, superheroXmlLocalDataSource)
+    private val superheroDataRepository = SuperheroDataRepository(superheroApiRemoteDataSource, superheroXmlLocalDataSource)
     private val getSuperheroesUseCase = GetSuperheroesUseCase(superheroDataRepository)
     private val getSuperheroUseCase = GetSuperheroUseCase(superheroDataRepository)
 
@@ -25,5 +28,10 @@ class SuperheroFactory(private val context: Context) {
 
     fun getSuperheroListViewModel(): SuperheroListViewModel {
         return SuperheroListViewModel(getSuperheroesUseCase)
+    }
+
+    private fun getSuperheroApiRemoteDataSource(): SuperheroApiRemoteDataSource {
+        val superheroService = ApiClient.provideSuperheroService()
+        return SuperheroApiRemoteDataSource(superheroService)
     }
 }

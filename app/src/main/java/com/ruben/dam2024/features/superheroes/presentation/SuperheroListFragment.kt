@@ -47,17 +47,17 @@ class SuperheroListFragment : Fragment() {
 
 
     private fun bindData(superheroes: List<Superhero>) {
-        binding.superheroImage1.loadUrl(superheroes[0].photoUrl)
+        //binding.superheroImage1.loadUrl(superheroes[0].photoUrl)
         binding.superheroImage1.setOnClickListener {
             navigateToSuperheroDetail(superheroes[0].id)
         }
         binding.superheroName1.text = superheroes[0].name
-        binding.superheroImage2.loadUrl(superheroes[1].photoUrl)
+        //binding.superheroImage2.loadUrl(superheroes[1].photoUrl)
         binding.superheroImage2.setOnClickListener {
             navigateToSuperheroDetail(superheroes[1].id)
         }
         binding.superheroName2.text = superheroes[1].name
-        binding.superheroImage3.loadUrl(superheroes[2].photoUrl)
+        //binding.superheroImage3.loadUrl(superheroes[2].photoUrl)
         binding.superheroImage3.setOnClickListener {
             navigateToSuperheroDetail(superheroes[2].id)
         }
